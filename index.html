@@ -1,124 +1,246 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <!-- Meta Tags -->
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-    <!-- Author -->
-    <meta name="author" content="Themesindustry">
-    <!-- description -->
-    <meta name="description" content="MegaOne is a highly creative, modern, visually stunning and Bootstrap responsive multipurpose agency and portfolio HTML5 template with 8 ready home page demos.">
-    <!-- keywords -->
-    <meta name="keywords" content="creative, modern, clean, bootstrap responsive, html5, css3, portfolio, blog, agency, templates, multipurpose, one page, corporate, start-up, studio, branding, designer, freelancer, carousel, parallax, photography, personal, masonry, grid, faq">
-
-    <!-- Page Title -->
-    <title>MegaOne | One / Multi Page Parallax HTML5 Template | Biggest HTML5 Template of 2022</title>
-
-    <!-- Favicon -->
-    <link rel="icon" href="demos/images/favicon.ico">
-    <!-- Plugins CSS File -->
-    <link rel="stylesheet" href="demos/css/plugins.min.css">
-    <!-- Megamenu CSS File -->
-    <link rel="stylesheet" href="demos/css/megamenu.css">
-    <!-- Style CSS File -->
-    <link rel="stylesheet" href="demos/css/style.css">
-
+<meta charset="UTF-8">
+<title>Catálogo interno de Templates</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root {
+  --bg:#f5f7fa;--card:#ffffff;--border:#d9e2ec;--text:#1f2933;--muted:#627d98;--accent:#0a58ca;--accent-hover:#063a82;--danger:#b00020;--radius:14px;
+}
+* {box-sizing:border-box;}
+body {margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.4;}
+header {padding:2.2rem 1.5rem 1rem;max-width:1280px;margin:0 auto;}
+h1 {margin:0 0 .75rem;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-.5px;}
+header p {max-width:880px;margin:.25rem 0;font-size:.95rem;color:var(--muted);} 
+.badge {display:inline-block;background:#eef2f7;color:var(--muted);font-size:.65rem;letter-spacing:.5px;padding:3px 8px;border-radius:30px;margin-left:.5rem;text-transform:uppercase;}
+main {max-width:1380px;margin:0 auto;padding:0 1.5rem 3rem;}
+section {margin:2.5rem 0 0;}
+section h2 {font-size:1.05rem;font-weight:600;margin:0 0 .75rem;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.5rem;}
+.grid {display:grid;gap:.55rem;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));}
+.card a {display:flex;align-items:center;gap:.6rem;padding:.65rem .75rem;background:var(--card);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);font-size:.78rem;font-weight:500;line-height:1.2;position:relative;}
+.card a:hover {border-color:var(--accent);box-shadow:0 2px 4px -2px rgba(0,0,0,.08),0 4px 12px -4px rgba(0,0,0,.06);}
+small.licencia {display:block;margin-top:1.2rem;font-size:.7rem;color:var(--muted);} 
+.filters {display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 0;}
+.filters button {background:var(--card);border:1px solid var(--border);padding:.45rem .85rem;border-radius:40px;font-size:.7rem;cursor:pointer;color:var(--text);font-weight:500;}
+.filters button.active, .filters button:hover {background:var(--accent);color:#fff;border-color:var(--accent);} 
+.count {font-size:.65rem;background:var(--accent);color:#fff;padding:2px 6px;border-radius:20px;font-weight:600;}
+footer {max-width:1280px;margin:0 auto;padding:1.5rem;color:var(--muted);font-size:.65rem;}
+@media (max-width:680px){.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}}
+</style>
+<script>
+// Pequeño script para filtrar por palabra clave
+function ready(fn){document.readyState!=="loading"?fn():document.addEventListener("DOMContentLoaded",fn);} 
+ready(()=>{
+  const buttons = document.querySelectorAll('.filters button[data-filter]');
+  const cards = Array.from(document.querySelectorAll('[data-name]'));
+  buttons.forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.filter==='all'){buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');cards.forEach(c=>c.hidden=false);return;}
+    const key = b.dataset.filter.toLowerCase();
+    buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');
+    cards.forEach(c=>{const name=c.dataset.name.toLowerCase();c.hidden = !name.includes(key);});
+  }));
+});
+</script>
 </head>
-<body data-spy="scroll" data-target=".navbar-nav" data-offset="90">
-
-    <!-- Header start -->
-    <header >
-
-
-    </header>
-    <!-- Header end -->
-
-
-
-        <!-- Demos start -->
-        <section id="demos" class="shop">
-            <div class="container container-width">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="main-title wow fadeIn" data-wow-delay="300ms">
-                            <div class="main-title-opacity-text"> <h1 class="d-flex justify-content-start">Unique </h1> <h1 class="d-flex justify-content-end">Demos </h1> </div>
-                            <img src="demos/images/logo.png" alt="logo" title="Logo">
-                            <h2 class="color-black"> MegaOne HTML5  </h2>
-                            <p class="color-black font-weight-500 text-uppercase">THE BIGGEST TEMPLATE OF 2022 WITH BEAUTIFUL AND TRULY UNIQUE PRE-BUILT <span class="font-weight-bold color-summer-sky">complete websites</span> FOR YOUR PERSONAL AND BUSINESS NEED.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- About Boxes start -->
-        <section style="padding-top: 10px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
-                    <a href="http://preview.themeforest.net/item/megaone-one-page-parallax/full_screen_preview/25651324?_ga=2.6427314.1093391550.1594385342-825233139.1579709813" target="_blank"><div class="about-box mb-5 mb-lg-0 mx-auto bg-blue">
-                        <span class="pro-step d-inline-block color-white"><i class="fa fa-rocket" aria-hidden="true"></i></span>
-                        <h5 class="font-weight-500 color-white mt-25px mb-15px text-capitalize">LAUNCH DEMOS</h5>
-                        <p class="font-weight-light color-white">Check all our latest website demos which are included in the latest version.</p>
-                    </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                   <a href="../Documentation/index.html" target="_blank"> <div class="about-box mb-5 mb-lg-0 mx-auto bg-yellow">
-                        <span class="pro-step d-inline-block color-white"><i class="fa fa-clone" aria-hidden="true"></i></span>
-                        <h5 class="font-weight-500 color-white mt-25px mb-15px">DOCUMENTATION</h5>
-                        <p class="font-weight-light color-white">Please read our template's documentation before starting your website.</p>
-                    </div>
-                   </a>
-                </div>
-                <div class="col-lg-4 col-md-12 col-12">
-                    <a href="https://support.acrothemes.com/login/" target="_blank"><div class="about-box mb-0 mx-auto bg-pink">
-                        <span class="pro-step d-inline-block color-white"><i class="fa fa-life-ring" aria-hidden="true"></i></span>
-                        <h5 class="font-weight-500 color-white mt-25px mb-15px text-capitalize">SUPPORT</h5>
-                        <p class="font-weight-light color-white">Contact our support team if you are having any problems with the template.</p>
-                    </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        </section>
-        <!-- About Boxes ends -->
-
-
-
-
-
-    <!-- Clients start -->
-    <section class="bg-light-gray" >
-        <h2 class="d-none">heading</h2>
-            <div class="container">
-
-                 <div class="row">
-                <div class="col-md-12">
-                    <div class="main-title wow fadeIn" data-wow-delay="300ms">
-                        <div class="main-title-opacity-text style-two"> <h1 class="d-flex justify-content-start">Thank </h1> <h1 class="d-flex justify-content-end">You </h1> </div>
-                        <h2 >Thanks for purchasing.</h2>
-                        <p class=" font-weight-500 text-uppercase">Please let us know how you feel about our template at support@themesindustry.com</p>
-                    </div>
-                </div>
-               </div>
-
-            </div>
-    </section>
-    <!-- Clients ends -->
-
-
-
-    <!--Scroll Top-->
-    <a class="scroll-top-arrow" href="javascript:void(0);"><i class="fa fa-angle-up"></i></a>
-    <!--Scroll Top End-->
-
-<!-- Plugins JS File -->
-<script src="demos/js/plugins.min.js"></script>
-<!-- MegaMenu JS File -->
-<script src="demos/js/megamenu.js"></script>
-<!-- Custom JS File -->
-<script src="demos/js/functions.js"></script>
+<body>
+<header>
+  <h1>Catálogo interno de Templates <span class="badge">Demo</span></h1>
+  <p>Explora las variantes disponibles. Haz clic para abrir cada demo en una nueva pestaña. Este listado es exclusivamente para revisión interna con un cliente específico y no constituye redistribución pública. Evitar difusión externa.</p>
+  <div class="filters">
+    <button class="active" data-filter="all">Todos</button>
+    <button data-filter="agency">Agency</button>
+    <button data-filter="creative">Creative</button>
+    <button data-filter="corporate">Corporate</button>
+    <button data-filter="portfolio">Portfolio</button>
+    <button data-filter="shop">Shop / Product</button>
+    <button data-filter="medical">Medical / Health</button>
+    <button data-filter="food">Food</button>
+    <button data-filter="education">Education</button>
+    <button data-filter="personal">Personal</button>
+    <button data-filter="blog">Blog</button>
+  </div>
+  <small class="licencia">Contenido sujeto a los derechos de autor del proveedor original (ThemeForest). Uso evaluativo interno. No indexar, no compartir, no clonar.</small>
+</header>
+<main>
+  <section>
+    <h2>Landings / Homepages</h2>
+    <div class="grid">
+      <!-- Lista generada: index-*.html -->
+      <div class="card" data-name="index-ad-agency"><a target="_blank" href="index-ad-agency.html">index-ad-agency.html</a></div>
+      <div class="card" data-name="index-agency"><a target="_blank" href="index-agency.html">index-agency.html</a></div>
+      <div class="card" data-name="index-agency-hotspot"><a target="_blank" href="index-agency-hotspot.html">index-agency-hotspot.html</a></div>
+      <div class="card" data-name="index-agency-studio"><a target="_blank" href="index-agency-studio.html">index-agency-studio.html</a></div>
+      <div class="card" data-name="index-agency-video"><a target="_blank" href="index-agency-video.html">index-agency-video.html</a></div>
+      <div class="card" data-name="index-architect-studio"><a target="_blank" href="index-architect-studio.html">index-architect-studio.html</a></div>
+      <div class="card" data-name="index-art-agency"><a target="_blank" href="index-art-agency.html">index-art-agency.html</a></div>
+      <div class="card" data-name="index-barber"><a target="_blank" href="index-barber.html">index-barber.html</a></div>
+      <div class="card" data-name="index-blog"><a target="_blank" href="index-blog.html">index-blog.html</a></div>
+      <div class="card" data-name="index-book-shop"><a target="_blank" href="index-book-shop.html">index-book-shop.html</a></div>
+      <div class="card" data-name="index-brand-agency"><a target="_blank" href="index-brand-agency.html">index-brand-agency.html</a></div>
+      <div class="card" data-name="index-bubble-studio"><a target="_blank" href="index-bubble-studio.html">index-bubble-studio.html</a></div>
+      <div class="card" data-name="index-builder-construction"><a target="_blank" href="index-builder-construction.html">index-builder-construction.html</a></div>
+      <div class="card" data-name="index-cafe"><a target="_blank" href="index-cafe.html">index-cafe.html</a></div>
+      <div class="card" data-name="index-cakes"><a target="_blank" href="index-cakes.html">index-cakes.html</a></div>
+      <div class="card" data-name="index-cars-automobile"><a target="_blank" href="index-cars-automobile.html">index-cars-automobile.html</a></div>
+      <div class="card" data-name="index-celebrity"><a target="_blank" href="index-celebrity.html">index-celebrity.html</a></div>
+      <div class="card" data-name="index-charity"><a target="_blank" href="index-charity.html">index-charity.html</a></div>
+      <div class="card" data-name="index-classic-business"><a target="_blank" href="index-classic-business.html">index-classic-business.html</a></div>
+      <div class="card" data-name="index-clothing-brand"><a target="_blank" href="index-clothing-brand.html">index-clothing-brand.html</a></div>
+      <div class="card" data-name="index-coffee"><a target="_blank" href="index-coffee.html">index-coffee.html</a></div>
+      <div class="card" data-name="index-construction"><a target="_blank" href="index-construction.html">index-construction.html</a></div>
+      <div class="card" data-name="index-consulting"><a target="_blank" href="index-consulting.html">index-consulting.html</a></div>
+      <div class="card" data-name="index-consulting-startup"><a target="_blank" href="index-consulting-startup.html">index-consulting-startup.html</a></div>
+      <div class="card" data-name="index-corporate"><a target="_blank" href="index-corporate.html">index-corporate.html</a></div>
+      <div class="card" data-name="index-corporate-agency"><a target="_blank" href="index-corporate-agency.html">index-corporate-agency.html</a></div>
+      <div class="card" data-name="index-corporate-business"><a target="_blank" href="index-corporate-business.html">index-corporate-business.html</a></div>
+      <div class="card" data-name="index-corporate-executive"><a target="_blank" href="index-corporate-executive.html">index-corporate-executive.html</a></div>
+      <div class="card" data-name="index-corporate-finance"><a target="_blank" href="index-corporate-finance.html">index-corporate-finance.html</a></div>
+      <div class="card" data-name="index-corporate-marketing"><a target="_blank" href="index-corporate-marketing.html">index-corporate-marketing.html</a></div>
+      <div class="card" data-name="index-creative-designer"><a target="_blank" href="index-creative-designer.html">index-creative-designer.html</a></div>
+      <div class="card" data-name="index-creative-hotspot"><a target="_blank" href="index-creative-hotspot.html">index-creative-hotspot.html</a></div>
+      <div class="card" data-name="index-creative-parallax"><a target="_blank" href="index-creative-parallax.html">index-creative-parallax.html</a></div>
+      <div class="card" data-name="index-creative-piling"><a target="_blank" href="index-creative-piling.html">index-creative-piling.html</a></div>
+      <div class="card" data-name="index-creative-portfolio"><a target="_blank" href="index-creative-portfolio.html">index-creative-portfolio.html</a></div>
+      <div class="card" data-name="index-creative-startup"><a target="_blank" href="index-creative-startup.html">index-creative-startup.html</a></div>
+      <div class="card" data-name="index-creative-studio"><a target="_blank" href="index-creative-studio.html">index-creative-studio.html</a></div>
+      <div class="card" data-name="index-cycling"><a target="_blank" href="index-cycling.html">index-cycling.html</a></div>
+      <div class="card" data-name="index-dark-agency"><a target="_blank" href="index-dark-agency.html">index-dark-agency.html</a></div>
+      <div class="card" data-name="index-dark-creative"><a target="_blank" href="index-dark-creative.html">index-dark-creative.html</a></div>
+      <div class="card" data-name="index-dental"><a target="_blank" href="index-dental.html">index-dental.html</a></div>
+      <div class="card" data-name="index-design-agency"><a target="_blank" href="index-design-agency.html">index-design-agency.html</a></div>
+      <div class="card" data-name="index-digital-agency"><a target="_blank" href="index-digital-agency.html">index-digital-agency.html</a></div>
+      <div class="card" data-name="index-digital-corporate"><a target="_blank" href="index-digital-corporate.html">index-digital-corporate.html</a></div>
+      <div class="card" data-name="index-digital-creative"><a target="_blank" href="index-digital-creative.html">index-digital-creative.html</a></div>
+      <div class="card" data-name="index-digital-marketing"><a target="_blank" href="index-digital-marketing.html">index-digital-marketing.html</a></div>
+      <div class="card" data-name="index-digital-portfolio"><a target="_blank" href="index-digital-portfolio.html">index-digital-portfolio.html</a></div>
+      <div class="card" data-name="index-digital-services"><a target="_blank" href="index-digital-services.html">index-digital-services.html</a></div>
+      <div class="card" data-name="index-digital-startup"><a target="_blank" href="index-digital-startup.html">index-digital-startup.html</a></div>
+      <div class="card" data-name="index-digital-university"><a target="_blank" href="index-digital-university.html">index-digital-university.html</a></div>
+      <div class="card" data-name="index-directory-listing"><a target="_blank" href="index-directory-listing.html">index-directory-listing.html</a></div>
+      <div class="card" data-name="index-education"><a target="_blank" href="index-education.html">index-education.html</a></div>
+      <div class="card" data-name="index-elements"><a target="_blank" href="index-elements.html">index-elements.html</a></div>
+      <div class="card" data-name="index-elements-portfolio"><a target="_blank" href="index-elements-portfolio.html">index-elements-portfolio.html</a></div>
+      <div class="card" data-name="index-event"><a target="_blank" href="index-event.html">index-event.html</a></div>
+      <div class="card" data-name="index-event-management"><a target="_blank" href="index-event-management.html">index-event-management.html</a></div>
+      <div class="card" data-name="index-eyewear"><a target="_blank" href="index-eyewear.html">index-eyewear.html</a></div>
+      <div class="card" data-name="index-fashion-blog"><a target="_blank" href="index-fashion-blog.html">index-fashion-blog.html</a></div>
+      <div class="card" data-name="index-fashion-trends"><a target="_blank" href="index-fashion-trends.html">index-fashion-trends.html</a></div>
+      <div class="card" data-name="index-film"><a target="_blank" href="index-film.html">index-film.html</a></div>
+      <div class="card" data-name="index-fitness-trainer"><a target="_blank" href="index-fitness-trainer.html">index-fitness-trainer.html</a></div>
+      <div class="card" data-name="index-football"><a target="_blank" href="index-football.html">index-football.html</a></div>
+      <div class="card" data-name="index-food"><a target="_blank" href="index-food.html">index-food.html</a></div>
+      <div class="card" data-name="index-food-blog"><a target="_blank" href="index-food-blog.html">index-food-blog.html</a></div>
+      <div class="card" data-name="index-food-delivery"><a target="_blank" href="index-food-delivery.html">index-food-delivery.html</a></div>
+      <div class="card" data-name="index-food-shop"><a target="_blank" href="index-food-shop.html">index-food-shop.html</a></div>
+      <div class="card" data-name="index-freelancer"><a target="_blank" href="index-freelancer.html">index-freelancer.html</a></div>
+      <div class="card" data-name="index-furniture"><a target="_blank" href="index-furniture.html">index-furniture.html</a></div>
+      <div class="card" data-name="index-gardening"><a target="_blank" href="index-gardening.html">index-gardening.html</a></div>
+      <div class="card" data-name="index-golf-player"><a target="_blank" href="index-golf-player.html">index-golf-player.html</a></div>
+      <div class="card" data-name="index-gradient-agency"><a target="_blank" href="index-gradient-agency.html">index-gradient-agency.html</a></div>
+      <div class="card" data-name="index-grid"><a target="_blank" href="index-grid.html">index-grid.html</a></div>
+      <div class="card" data-name="index-gym"><a target="_blank" href="index-gym.html">index-gym.html</a></div>
+      <div class="card" data-name="index-handbags"><a target="_blank" href="index-handbags.html">index-handbags.html</a></div>
+      <div class="card" data-name="index-home-decor"><a target="_blank" href="index-home-decor.html">index-home-decor.html</a></div>
+      <div class="card" data-name="index-hospital"><a target="_blank" href="index-hospital.html">index-hospital.html</a></div>
+      <div class="card" data-name="index-innovative-startup"><a target="_blank" href="index-innovative-startup.html">index-innovative-startup.html</a></div>
+      <div class="card" data-name="index-innovative1"><a target="_blank" href="index-innovative1.html">index-innovative1.html</a></div>
+      <div class="card" data-name="index-innovative"><a target="_blank" href="index-innovative.html">index-innovative.html</a></div>
+      <div class="card" data-name="index-insurance"><a target="_blank" href="index-insurance.html">index-insurance.html</a></div>
+      <div class="card" data-name="index-interior-designer"><a target="_blank" href="index-interior-designer.html">index-interior-designer.html</a></div>
+      <div class="card" data-name="index-interior"><a target="_blank" href="index-interior.html">index-interior.html</a></div>
+      <div class="card" data-name="index-jewelry"><a target="_blank" href="index-jewelry.html">index-jewelry.html</a></div>
+      <div class="card" data-name="index-kids"><a target="_blank" href="index-kids.html">index-kids.html</a></div>
+      <div class="card" data-name="index-kitchen-interior"><a target="_blank" href="index-kitchen-interior.html">index-kitchen-interior.html</a></div>
+      <div class="card" data-name="index-landing-page"><a target="_blank" href="index-landing-page.html">index-landing-page.html</a></div>
+      <div class="card" data-name="index-landing"><a target="_blank" href="index-landing.html">index-landing.html</a></div>
+      <div class="card" data-name="index-law"><a target="_blank" href="index-law.html">index-law.html</a></div>
+      <div class="card" data-name="index-logistic"><a target="_blank" href="index-logistic.html">index-logistic.html</a></div>
+      <div class="card" data-name="index-map"><a target="_blank" href="index-map.html">index-map.html</a></div>
+      <div class="card" data-name="index-marketing-agency"><a target="_blank" href="index-marketing-agency.html">index-marketing-agency.html</a></div>
+      <div class="card" data-name="index-medical"><a target="_blank" href="index-medical.html">index-medical.html</a></div>
+      <div class="card" data-name="index-mental-health"><a target="_blank" href="index-mental-health.html">index-mental-health.html</a></div>
+      <div class="card" data-name="index-minimal-creative"><a target="_blank" href="index-minimal-creative.html">index-minimal-creative.html</a></div>
+      <div class="card" data-name="index-minimal-startup"><a target="_blank" href="index-minimal-startup.html">index-minimal-startup.html</a></div>
+      <div class="card" data-name="index-minimal"><a target="_blank" href="index-minimal.html">index-minimal.html</a></div>
+      <div class="card" data-name="index-model-agency"><a target="_blank" href="index-model-agency.html">index-model-agency.html</a></div>
+      <div class="card" data-name="index-new-agency"><a target="_blank" href="index-new-agency.html">index-new-agency.html</a></div>
+      <div class="card" data-name="index-nutritionist"><a target="_blank" href="index-nutritionist.html">index-nutritionist.html</a></div>
+      <div class="card" data-name="index-parallax"><a target="_blank" href="index-parallax.html">index-parallax.html</a></div>
+      <div class="card" data-name="index-personal-hotspot"><a target="_blank" href="index-personal-hotspot.html">index-personal-hotspot.html</a></div>
+      <div class="card" data-name="index-personal-portfolio"><a target="_blank" href="index-personal-portfolio.html">index-personal-portfolio.html</a></div>
+      <div class="card" data-name="index-personal-profile"><a target="_blank" href="index-personal-profile.html">index-personal-profile.html</a></div>
+      <div class="card" data-name="index-personal"><a target="_blank" href="index-personal.html">index-personal.html</a></div>
+      <div class="card" data-name="index-pets"><a target="_blank" href="index-pets.html">index-pets.html</a></div>
+      <div class="card" data-name="index-photographer"><a target="_blank" href="index-photographer.html">index-photographer.html</a></div>
+      <div class="card" data-name="index-portfolio-agency"><a target="_blank" href="index-portfolio-agency.html">index-portfolio-agency.html</a></div>
+      <div class="card" data-name="index-portfolio-column"><a target="_blank" href="index-portfolio-column.html">index-portfolio-column.html</a></div>
+      <div class="card" data-name="index-portfolio"><a target="_blank" href="index-portfolio.html">index-portfolio.html</a></div>
+      <div class="card" data-name="index-premium-agency"><a target="_blank" href="index-premium-agency.html">index-premium-agency.html</a></div>
+      <div class="card" data-name="index-premium-startup-agency"><a target="_blank" href="index-premium-startup-agency.html">index-premium-startup-agency.html</a></div>
+      <div class="card" data-name="index-product-dark"><a target="_blank" href="index-product-dark.html">index-product-dark.html</a></div>
+      <div class="card" data-name="index-product-hotspot"><a target="_blank" href="index-product-hotspot.html">index-product-hotspot.html</a></div>
+      <div class="card" data-name="index-product"><a target="_blank" href="index-product.html">index-product.html</a></div>
+      <div class="card" data-name="index-realestate"><a target="_blank" href="index-realestate.html">index-realestate.html</a></div>
+      <div class="card" data-name="index-resume"><a target="_blank" href="index-resume.html">index-resume.html</a></div>
+      <div class="card" data-name="index-restaurant"><a target="_blank" href="index-restaurant.html">index-restaurant.html</a></div>
+      <div class="card" data-name="index-seo-agency"><a target="_blank" href="index-seo-agency.html">index-seo-agency.html</a></div>
+      <div class="card" data-name="index-shop"><a target="_blank" href="index-shop.html">index-shop.html</a></div>
+      <div class="card" data-name="index-showcase-dark"><a target="_blank" href="index-showcase-dark.html">index-showcase-dark.html</a></div>
+      <div class="card" data-name="index-showcase"><a target="_blank" href="index-showcase.html">index-showcase.html</a></div>
+      <div class="card" data-name="index-skin-doctor"><a target="_blank" href="index-skin-doctor.html">index-skin-doctor.html</a></div>
+      <div class="card" data-name="index-skincare"><a target="_blank" href="index-skincare.html">index-skincare.html</a></div>
+      <div class="card" data-name="index-speaker"><a target="_blank" href="index-speaker.html">index-speaker.html</a></div>
+      <div class="card" data-name="index-spa"><a target="_blank" href="index-spa.html">index-spa.html</a></div>
+      <div class="card" data-name="index-startup-portfolio"><a target="_blank" href="index-startup-portfolio.html">index-startup-portfolio.html</a></div>
+      <div class="card" data-name="index-studio"><a target="_blank" href="index-studio.html">index-studio.html</a></div>
+      <div class="card" data-name="index-surfing"><a target="_blank" href="index-surfing.html">index-surfing.html</a></div>
+      <div class="card" data-name="index-travelling"><a target="_blank" href="index-travelling.html">index-travelling.html</a></div>
+      <div class="card" data-name="index-web-hosting"><a target="_blank" href="index-web-hosting.html">index-web-hosting.html</a></div>
+      <div class="card" data-name="index-wedding"><a target="_blank" href="index-wedding.html">index-wedding.html</a></div>
+      <div class="card" data-name="index-yoga-instructor"><a target="_blank" href="index-yoga-instructor.html">index-yoga-instructor.html</a></div>
+      <div class="card" data-name="index-yoga"><a target="_blank" href="index-yoga.html">index-yoga.html</a></div>
+    </div>
+  </section>
+  <section>
+    <h2>Elementos / Componentes</h2>
+    <div class="grid">
+      <div class="card" data-name="elements-blog"><a target="_blank" href="elements-blog.html">elements-blog.html</a></div>
+      <div class="card" data-name="elements-button"><a target="_blank" href="elements-button.html">elements-button.html</a></div>
+      <div class="card" data-name="elements-counter"><a target="_blank" href="elements-counter.html">elements-counter.html</a></div>
+      <div class="card" data-name="elements-footer"><a target="_blank" href="elements-footer.html">elements-footer.html</a></div>
+      <div class="card" data-name="elements-info"><a target="_blank" href="elements-info.html">elements-info.html</a></div>
+      <div class="card" data-name="elements-portfolio-1"><a target="_blank" href="elements-portfolio-1.html">elements-portfolio-1.html</a></div>
+      <div class="card" data-name="elements-portfolio-2"><a target="_blank" href="elements-portfolio-2.html">elements-portfolio-2.html</a></div>
+      <div class="card" data-name="elements-portfolio-3"><a target="_blank" href="elements-portfolio-3.html">elements-portfolio-3.html</a></div>
+      <div class="card" data-name="elements-portfolio-4"><a target="_blank" href="elements-portfolio-4.html">elements-portfolio-4.html</a></div>
+      <div class="card" data-name="elements-portfolio-5"><a target="_blank" href="elements-portfolio-5.html">elements-portfolio-5.html</a></div>
+      <div class="card" data-name="elements-portfolio-6"><a target="_blank" href="elements-portfolio-6.html">elements-portfolio-6.html</a></div>
+      <div class="card" data-name="elements-portfolio-7"><a target="_blank" href="elements-portfolio-7.html">elements-portfolio-7.html</a></div>
+      <div class="card" data-name="elements-portfolio-8"><a target="_blank" href="elements-portfolio-8.html">elements-portfolio-8.html</a></div>
+      <div class="card" data-name="elements-portfolio-9"><a target="_blank" href="elements-portfolio-9.html">elements-portfolio-9.html</a></div>
+      <div class="card" data-name="elements-portfolio-10"><a target="_blank" href="elements-portfolio-10.html">elements-portfolio-10.html</a></div>
+      <div class="card" data-name="elements-portfolio-11"><a target="_blank" href="elements-portfolio-11.html">elements-portfolio-11.html</a></div>
+      <div class="card" data-name="elements-portfolio-12"><a target="_blank" href="elements-portfolio-12.html">elements-portfolio-12.html</a></div>
+      <div class="card" data-name="elements-pricing"><a target="_blank" href="elements-pricing.html">elements-pricing.html</a></div>
+      <div class="card" data-name="elements-quote"><a target="_blank" href="elements-quote.html">elements-quote.html</a></div>
+      <div class="card" data-name="elements-team"><a target="_blank" href="elements-team.html">elements-team.html</a></div>
+      <div class="card" data-name="elements-testimonials"><a target="_blank" href="elements-testimonials.html">elements-testimonials.html</a></div>
+      <div class="card" data-name="elements-typography"><a target="_blank" href="elements-typography.html">elements-typography.html</a></div>
+    </div>
+  </section>
+  <section>
+    <h2>Páginas de Error</h2>
+    <div class="grid">
+      <div class="card" data-name="404-1"><a target="_blank" href="404-1.html">404-1.html</a></div>
+      <div class="card" data-name="404-2"><a target="_blank" href="404-2.html">404-2.html</a></div>
+      <div class="card" data-name="404-3"><a target="_blank" href="404-3.html">404-3.html</a></div>
+    </div>
+  </section>
+</main>
+<footer>
+  Catálogo interno — No distribuir. © Derechos reservados por los autores originales del theme. Este archivo índice no debe hacerse público.
+</footer>
 </body>
 </html>
