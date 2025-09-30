@@ -6,9 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <style>
-:root {
-  --bg:#f5f7fa;--card:#ffffff;--border:#d9e2ec;--text:#1f2933;--muted:#627d98;--accent:#0a58ca;--accent-hover:#063a82;--danger:#b00020;--radius:14px;
-}
+:root { --bg:#f5f7fa;--card:#ffffff;--border:#d9e2ec;--text:#1f2933;--muted:#627d98;--accent:#0a58ca;--accent-hover:#063a82;--danger:#b00020;--radius:14px; }
 * {box-sizing:border-box;}
 body {margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.4;}
 header {padding:2.2rem 1.5rem 1rem;max-width:1280px;margin:0 auto;}
@@ -19,8 +17,13 @@ main {max-width:1380px;margin:0 auto;padding:0 1.5rem 3rem;}
 section {margin:2.5rem 0 0;}
 section h2 {font-size:1.05rem;font-weight:600;margin:0 0 .75rem;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.5rem;}
 .grid {display:grid;gap:.55rem;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));}
+.card {position:relative;}
 .card a {display:flex;align-items:center;gap:.6rem;padding:.65rem .75rem;background:var(--card);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);font-size:.78rem;font-weight:500;line-height:1.2;position:relative;}
-.card a:hover {border-color:var(--accent);box-shadow:0 2px 4px -2px rgba(0,0,0,.08),0 4px 12px -4px rgba(0,0,0,.06);}
+.card a:hover {border-color:var(--accent);box-shadow:0 2px 4px -2px rgba(0,0,0,.08),0 4px 12px -4px rgba(0,0,0,.06);} 
+.star-btn {position:absolute;top:4px;right:4px;background:rgba(255,255,255,.85);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:15px;line-height:1;padding:4px 6px;color:#c0c5cc;transition:.2s;font-weight:600;}
+.star-btn:hover {color:#ffce3d;border-color:#ffce3d;}
+.star-btn.active {color:#f5b301;text-shadow:0 0 4px rgba(0,0,0,.25);border-color:#f5b301;background:#fff;}
+.star-btn:focus {outline:2px solid var(--accent);outline-offset:2px;}
 small.licencia {display:block;margin-top:1.2rem;font-size:.7rem;color:var(--muted);} 
 .filters {display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 0;}
 .filters button {background:var(--card);border:1px solid var(--border);padding:.45rem .85rem;border-radius:40px;font-size:.7rem;cursor:pointer;color:var(--text);font-weight:500;}
@@ -28,11 +31,99 @@ small.licencia {display:block;margin-top:1.2rem;font-size:.7rem;color:var(--mute
 .count {font-size:.65rem;background:var(--accent);color:#fff;padding:2px 6px;border-radius:20px;font-weight:600;}
 footer {max-width:1280px;margin:0 auto;padding:1.5rem;color:var(--muted);font-size:.65rem;}
 @media (max-width:680px){.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}}
+/* Overlay de autenticación */
+.auth-overlay {position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(120deg,rgba(9,32,77,.9),rgba(10,88,202,.85));backdrop-filter:blur(4px);z-index:2000;}
+.auth-overlay.fade {animation:fadeOut .25s forwards;}
+@keyframes fadeOut {to {opacity:0;visibility:hidden;}}
+.auth-modal {width:100%;max-width:380px;background:#fff;padding:2rem 1.75rem 2.25rem;border-radius:20px;box-shadow:0 10px 40px -10px rgba(0,0,0,.25);position:relative;}
+.auth-modal h2 {margin:0 0 .75rem;font-size:1.35rem;letter-spacing:.5px;}
+.auth-modal p {margin:.2rem 0 .9rem;font-size:.8rem;color:var(--muted);} 
+.auth-modal input {width:100%;padding:.75rem .85rem;font-size:.85rem;border:1px solid var(--border);border-radius:10px;margin:0 0 .9rem;background:#f8fafc;}
+.auth-modal input:focus {outline:2px solid var(--accent);}
+.auth-modal button {width:100%;padding:.75rem 1rem;font-size:.85rem;font-weight:600;background:var(--accent);color:#fff;border:none;border-radius:10px;cursor:pointer;letter-spacing:.5px;}
+.auth-modal button:hover {background:var(--accent-hover);} 
+.auth-modal .hint {font-size:.65rem;color:var(--muted);margin-top:.75rem;text-align:center;}
+.error-msg {color:var(--danger);font-size:.7rem;margin:.2rem 0 -.4rem;text-align:center;}
 </style>
 <script>
-// Pequeño script para filtrar por palabra clave
 function ready(fn){document.readyState!=="loading"?fn():document.addEventListener("DOMContentLoaded",fn);} 
-ready(()=>{
+// Protección por contraseña muy básica (visible en código, sólo disuasiva)
+const PASSWORD = 'templates2025';
+function initAuth(){
+  const key='catalog_access_v1';
+  const overlay=document.getElementById('auth-overlay');
+  if(localStorage.getItem(key)==='1'){ overlay.remove(); startApp(); return; }
+  overlay.hidden=false;
+  const input = document.getElementById('auth-pass');
+  const btn = document.getElementById('auth-btn');
+  const error = document.getElementById('auth-error');
+  function tryLogin(){
+     if(input.value===PASSWORD){
+        localStorage.setItem(key,'1');
+        overlay.classList.add('fade');
+        setTimeout(()=>{overlay.remove(); startApp();},220);
+     } else { error.hidden=false; input.select(); }
+  }
+  btn.addEventListener('click', tryLogin);
+  input.addEventListener('keydown', e=>{ if(e.key==='Enter') tryLogin(); });
+  setTimeout(()=> input.focus(), 50);
+}
+// Favoritos
+const FAVORITES_FILE = 'favorites.json';
+const FAVORITES_ENDPOINT = 'favorites.php';
+let favorites = new Set();
+function injectStars(){
+  document.querySelectorAll('.card').forEach(div=>{
+    if(div.querySelector('.star-btn')) return;
+    const name=div.dataset.name;
+    if(!name) return;
+    const btn=document.createElement('button');
+    btn.className='star-btn';
+    btn.type='button';
+    btn.dataset.name=name;
+    btn.innerHTML='★';
+    btn.title='Marcar favorito';
+    btn.setAttribute('aria-label','Marcar favorito');
+    btn.setAttribute('aria-pressed','false');
+    btn.addEventListener('click',()=>toggleFavorite(name));
+    div.appendChild(btn);
+  });
+}
+async function loadFavorites(){
+  try {
+    const res = await fetch(FAVORITES_FILE + '?t=' + Date.now());
+    if(res.ok){ const data = await res.json(); if(Array.isArray(data)) favorites = new Set(data); }
+  } catch(e){console.warn('No se pudo cargar favoritos', e);}
+  applyFavoritesUI();
+}
+function applyFavoritesUI(){
+  document.querySelectorAll('.star-btn').forEach(btn=>{
+    const n=btn.dataset.name; const act=favorites.has(n);
+    btn.classList.toggle('active', act); btn.setAttribute('aria-pressed', act?'true':'false');
+  });
+}
+async function toggleFavorite(name){
+  const isFav = favorites.has(name);
+  try {
+    const res = await fetch(FAVORITES_ENDPOINT, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({name, action: isFav? 'remove':'add'})
+    });
+    if(res.ok){
+      const data = await res.json();
+      if(data && Array.isArray(data.favorites)) {
+        favorites = new Set(data.favorites);
+        applyFavoritesUI();
+      }
+    } else {
+      alert('Error guardando favorito');
+    }
+  } catch(e){
+    console.error(e); alert('Error de red');
+  }
+}
+function initFilters(){
   const buttons = document.querySelectorAll('.filters button[data-filter]');
   const cards = Array.from(document.querySelectorAll('[data-name]'));
   buttons.forEach(b=>b.addEventListener('click',()=>{
@@ -41,10 +132,22 @@ ready(()=>{
     buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');
     cards.forEach(c=>{const name=c.dataset.name.toLowerCase();c.hidden = !name.includes(key);});
   }));
-});
+}
+function startApp(){ injectStars(); loadFavorites(); }
+ready(()=>{ initFilters(); initAuth(); });
 </script>
 </head>
 <body>
+<div id="auth-overlay" class="auth-overlay" hidden>
+  <div class="auth-modal">
+    <h2>Acceso restringido</h2>
+    <p>Introduce la contraseña para ver el catálogo interno.</p>
+    <input id="auth-pass" type="password" placeholder="Contraseña" autocomplete="off">
+    <button id="auth-btn" type="button">Entrar</button>
+    <p class="hint">Uso interno únicamente. No distribuir.</p>
+    <p class="error-msg" id="auth-error" hidden>Contraseña incorrecta</p>
+  </div>
+</div>
 <header>
   <h1>Catálogo interno de Templates <span class="badge">Demo</span></h1>
   <p>Explora las variantes disponibles. Haz clic para abrir cada demo en una nueva pestaña. Este listado es exclusivamente para revisión interna con un cliente específico y no constituye redistribución pública. Evitar difusión externa.</p>
@@ -67,7 +170,7 @@ ready(()=>{
   <section>
     <h2>Landings / Homepages</h2>
     <div class="grid">
-      <!-- Lista generada: index-*.html -->
+      <!-- Lista generada: index-*.html (sólo se mantienen nombres, estrellas se inyectan con JS) -->
       <div class="card" data-name="index-ad-agency"><a target="_blank" href="index-ad-agency.html">index-ad-agency.html</a></div>
       <div class="card" data-name="index-agency"><a target="_blank" href="index-agency.html">index-agency.html</a></div>
       <div class="card" data-name="index-agency-hotspot"><a target="_blank" href="index-agency-hotspot.html">index-agency-hotspot.html</a></div>
